@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: btournyo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 18:03:01 by btournyo          #+#    #+#             */
-/*   Updated: 2018/11/29 18:46:01 by btournyo         ###   ########.fr       */
+/*   Created: 2018/12/01 10:20:12 by btournyo          #+#    #+#             */
+/*   Updated: 2018/12/01 10:20:48 by btournyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 int check_sign(char a, char c)
 {
