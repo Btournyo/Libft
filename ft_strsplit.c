@@ -11,6 +11,22 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+char *ft_strcpy(char *dest, char *src)
+{
+	int i;
+	
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 int check_sign(char a, char c)
 {
@@ -27,10 +43,10 @@ int	count_words(char *str, char c)
 	i = 0;
 	words = 0;
 	if (check_sign(str[0], c) == 1)
-		words++;
+		i++;
 	while (str[i])
 	{
-		if (check_sign(str[i], c) == 1  && check_sign(str[i + 1], c) == 0)
+		if (check_sign(str[i], c) == 0  && check_sign(str[i + 1], c) == 1)
 			words++;
 		i++;
 	}
@@ -54,36 +70,31 @@ char ** ft_strsplit(char const *s, char c)
 	char	**tab;
 
 	i = 0;
-	j = 0;
-	if ((tab = malloc(sizeof(char *) * count_words((char *)s, c) + 1))== NULL)
+    j = 0;
+	if ((tab = (char **)malloc(sizeof(char *) * count_words((char *)s, c) + 1))== NULL)
 		return (NULL);
-	while (s[i] != '\0')
-	{
-		if (s[i] != '\0' && check_sign((char)s[i], c) == 0)
-		{
-			if ((tab[j] = malloc(sizeof(char) * size_words((char *)s + i, c) + 1)) == NULL)
-				return (NULL);
-			ft_strcpy(tab[j], (char *)&s[i]);
-			i = i + size_words((char *)&s[i], c);
-			j++;
-		}
-		else
-			i++;
-	}
-	tab[j] = 0;
-	return (tab);
+	while (s[i] != 0)
+    {
+        if (!(check_sign(s[i], c)) && s[i])
+        {
+          if ((tab[j] = (char *)malloc(sizeof(char) * size_words((char *)&s[i], c) + 1)) == NULL)
+          return (NULL);
+          ft_strsub(tab[j], i, size_words((char *)&s[i], c));  
+          printf("%s", tab[j]);
+          j++;
+          i = i + size_words((char *)&s[i], c);
+        }
+    i++;
+  }
+tab[j] = 0;
+return (tab);
 }
 
-int	main(int ac, char **av)
+int	main()
 {
-	int i;
+    char c = '*';
+    char const *s = "*salut*les***etudiants*";
 
-	i = 0;
-	(void)ac;
-	while (*av[i])
-	{
-		ft_putstr((const char *)ft_strsplit(&av[1][i], '*'));
-		i++;
-	}
+    printf("%s", ft_strsplit(s, c));
 	return (0);
 }
