@@ -6,7 +6,7 @@
 /*   By: btournyo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 10:20:12 by btournyo          #+#    #+#             */
-/*   Updated: 2018/12/01 10:20:48 by btournyo         ###   ########.fr       */
+/*   Updated: 2018/12/03 09:56:10 by btournyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,18 @@ char ** ft_strsplit(char const *s, char c)
 	}
 	tab[j] = 0;
 	return (tab);
+}
+
+int	main(int ac, char **av)
+{
+	int i;
+
+	i = 0;
+	(void)ac;
+	while (*av[i])
+	{
+		ft_putstr((const char *)ft_strsplit(&av[1][i], '*'));
+		i++;
+	}
+	return (0);
 }
